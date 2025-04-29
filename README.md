@@ -1,6 +1,6 @@
 # MyProject
 The name of the GUI application.
-    Temley Mini Calculator
+    Temley Multi-X Calculator
 What is the purpose of the Application?
     The application will serve as a calculator for temperature conversion and interest calculation, with the potential to expand     to compound interest calculation.
 List the reason you are creating the Application.

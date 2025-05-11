@@ -6,7 +6,7 @@ class TemleyMXCalculatorApp(tk.Tk):
     def __init__(root):
         super().__init__()
         root.title("Temley Multi-X Calculator")
-        root.geometry("550x400")
+        root.geometry("550x500")
         root.configure(bg="lightblue")
         
         root.label = tk.Label(root, text="Welcome to the Temley Multi-X Calculator!", bg="lightblue", font=("Arial Black", 14))
@@ -48,12 +48,33 @@ class TemleyMXCalculatorApp(tk.Tk):
         """Initializes the main user interface."""   
         # Input label and entry for Loan Amount
         tk.Label(root, text="Enter Loan Amount:", bg="lightblue", font=("Arial Black", 12)).pack(pady=10)
-        root.celsius_entry = tk.Entry(root, width=10, font=("Times New Roman", 12))
-        root.celsius_entry.pack(pady=5)
+        root.amount_entry = tk.Entry(root, width=10, font=("Times New Roman", 12))
+        root.amount_entry.pack(pady=5)
+
+        # Input label and entry for Interest Rate
+        tk.Label(root, text="Enter Interest Rate (%):", bg="lightblue", font=("Arial Black", 12)).pack(pady=10)
+        root.interest_rate_entry = tk.Entry(root, width=10, font=("Times New Roman", 12))
+        root.interest_rate_entry.pack(pady=5)
+
+        # Input label and entry for Loan Term (in years)
+        tk.Label(root, text="Enter Loan Term (years):", bg="lightblue", font=("Arial Black", 12)).pack(pady=10)
+        root.loan_term_entry = tk.Entry(root, width=10, font=("Times New Roman", 12))
+        root.loan_term_entry.pack(pady=5)
+
+        # Function to calculate interest
+        def calculate_interest():
+            try:
+                loan_amount = float(root.amount_entry.get())
+                interest_rate = float(root.interest_rate_entry.get())
+                loan_term = int(root.loan_term_entry.get())
+                total_interest = loan_amount * (interest_rate / 100) * loan_term
+                root.result_label.config(text=f"Total Interest: ${total_interest:.2f}")
+            except ValueError:
+                root.result_label.config(text="Invalid input. Please enter numeric values.")
 
         # Submit button
-        tk.Button(root, text="Submit", command="", bg="white", font=("Times New Roman", 12)).pack(pady=10)
-        
+        tk.Button(root, text="Submit", command=calculate_interest, bg="white", font=("Times New Roman", 12)).pack(pady=10)
+             
         # Label to display the result
         root.result_label = tk.Label(root, text="", bg="lightblue", font=("Times New Roman", 12))
         root.result_label.pack(pady=10)
